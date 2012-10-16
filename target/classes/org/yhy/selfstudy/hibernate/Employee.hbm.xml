@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="org.yhy.selfstudy.hibernate">
+ 
+    <class name="Employee" table="EMPLOYEE">
+    
+        <id name="id" column="ID">
+            <generator class="native"/>
+        </id>
+        
+        <one-to-one name="employeeDetail" class="EmployeeDetail"
+            cascade="save-update"></one-to-one>
+            
+        <property name="firstname" column="FIRST_NAME"/>
+        <property name="lastname" column="LAST_NAME"/>
+        <property name="birthDate" type="date" column="BIRTH_DATE"/>
+        <property name="cellphone" column="CELL_PHONE"/>
+        
+        <many-to-one name="department" class="Department" fetch="select">
+            <column name="department_id" not-null="true" />
+        </many-to-one>
+        
+        <set name="meetings" table="EMPLOYEE_MEETING" inverse="false" lazy="true" fetch="select" cascade="all">
+            <key column="EMPLOYEE_ID" />
+            <many-to-many class="Meeting">
+            	<column name="MEETING_ID" not-null="true" />
+            </many-to-many>
+        </set>
+         
+    </class>
+ 
+</hibernate-mapping>

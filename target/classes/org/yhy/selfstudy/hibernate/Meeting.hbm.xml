@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="org.yhy.selfstudy.hibernate">
+ 
+    <class name="Meeting" table="MEETING">
+ 
+        <id name="meetingId" type="java.lang.Long" column="MEETING_ID">
+            <generator class="native" />
+        </id>
+ 
+        <property name="subject" column="SUBJECT" />
+        <property name="meetingDate" type="date" column="MEETING_DATE" />
+		
+		<!-- 
+        <set name="employees" table="EMPLOYEE_MEETING" inverse="true" lazy="true" fetch="select">
+            <key column="MEETING_ID" />
+            <many-to-many class="Employee" >
+            	<column name="EMPLOYEE_ID" not-null="true" />
+            </many-to-many>
+        </set>
+		 -->
+		 
+    </class>
+</hibernate-mapping>
